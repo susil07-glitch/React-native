@@ -1,0 +1,8 @@
+
+
+div -> view
+h1/p -> text
+
+SafeAreaProvider-> it provide safe area for the content like ( all content show below the camera )
+
+in mobile there is not automatic scroll

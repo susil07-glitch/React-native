@@ -1,98 +1,102 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image, View, StyleSheet, Text, Pressable, TextInput } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import React from "react";
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
+export default function Index() {
+  const { top } = useSafeAreaInsets();
+  const [IsHovered, setIsHovered] = React.useState(false);
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
-
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
+    <View style={[styles.container, { paddingTop: top }]}>
+      <Text style={styles.questionText}>How are you feeling today?</Text>
+      <View style={{ display: "flex", flexDirection: "row", gap:5, marginTop:20,marginLeft:7 }}>
+        <Pressable style={styles.emojiContainer}
+        >
+          <Image
+            style={styles.image}
+            source={require("@/Image/Emoji/VeryHappy.png")}
           />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
+          <Text style={styles.emojiText}>Very Happy</Text>
+        </Pressable>
+        <Pressable style={styles.emojiContainer}>
+          <Image
+            style={styles.image}
+            source={require("@/Image/Emoji/happy.png")}
           />
-        </ThemedView>
-
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+          <Text style={styles.emojiText}>Happy</Text>
+        </Pressable>
+        <Pressable style={styles.emojiContainer}>
+          <Image
+            style={styles.image}
+            source={require("@/Image/Emoji/Neutral.png")}
+          />
+          <Text style={styles.emojiText}>Neutral</Text>
+        </Pressable>
+        <Pressable style={styles.emojiContainer}>
+          <Image
+            style={styles.image}
+            source={require("@/Image/Emoji/sad.png")}
+          />
+          <Text style={styles.emojiText}>Sad</Text>
+        </Pressable>
+        <Pressable style={styles.emojiContainer}>
+          <Image
+            style={styles.image}
+            source={require("@/Image/Emoji/stressed.png")}
+          />
+          <Text style={styles.emojiText}>Stressed</Text>
+        </Pressable>
+      </View>
+      <Text style={styles.notesText}>Notes</Text>
+      <View style={{ display: "flex", flexDirection: "row", gap: 5, marginTop: 20, marginLeft: 7 }}>
+        <TextInput style={styles.notesInput} placeholder="Write your notes here..." />
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  questionText: {
+    fontSize:18,
+    fontWeight: "bold",
+    marginTop: 30,
+    marginLeft:15,
+  },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
+    backgroundColor: "#F5F5F5",
+    display: "flex",
+    flexDirection: "column",
   },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+  emojiContainer: {
+    marginLeft: 5,
+    gap: 8,
+    backgroundColor: "white",
+    height:100,
+    width:65,
+    borderRadius: 15,
+
+    justifyContent: "center",
+    alignItems: "center",
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+  image: {
+    height: 50,
+    width: 50,
   },
-  title: {
-    textAlign: 'center',
+  emojiText: {
+    fontSize: 12,
+    textAlign: "center",
   },
-  code: {
-    textTransform: 'uppercase',
+  notesText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 30,
+    marginLeft: 15,
   },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+  notesInput: {
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 5,
+    marginLeft: 15,
+    width:"90%",
   },
 });
