@@ -1,6 +1,6 @@
 
 import { color } from "@/theme/color";
-import P from "./text";
+import { P } from "./text";
 import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 
 export function Emoji({ text, source }: Props) {
   return (
-    <View style={styles.emojiContainer}>
+    <View style={styles.emojiContainerSingle}>
       <Image style={styles.image} source={source} />
       <P style={styles.emojiText}>{text}</P>
     </View>
@@ -23,12 +23,13 @@ const styles = StyleSheet.create({
     width: 70,
     
   },
-    emojiContainer: {
-        height: 100,
-        width: "auto",
-        display: "flex",
-        alignItems: "center",
-        borderRadius: 20,
+  emojiContainerSingle: {
+    height: 100,
+    width: "auto",
+    backgroundColor: "green",
+    borderRadius: 10,
+    display: "flex",
+    gap:10
 
       
   },
