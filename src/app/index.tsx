@@ -13,6 +13,7 @@ import { NoteArea } from "@/Component/TextArea";
 import { color } from "@/theme/color";
 import { Button } from "expo-router/build/react-navigation";
 import { Link } from "expo-router";
+import {Heart} from "lucide-react-native"
 
 export default function Index() {
   const { top } = useSafeAreaInsets();
@@ -38,7 +39,8 @@ export default function Index() {
         <P style={styles.notesText}>Notes</P>
         <NoteArea/>
       </View>
-      <Pressable style={styles.button}>
+        <Pressable style={styles.button}>
+        <Heart />
         <P style={styles.buttonsave}>Save</P>
         </Pressable>
         
