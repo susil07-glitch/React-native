@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
   emojiContainerSingle: {
     height: 100,
     width: "auto",
-    backgroundColor: "green",
-    borderRadius: 10,
-    display: "flex",
-    gap:10
-
-      
+    backgroundColor: "#c8d4d4",
+    display: "flex",  
+    borderWidth: 1,
+    borderColor: "blue",
+    borderRadius:10
+  
   },
   emojiText: {
     textAlign: "center",
