@@ -12,12 +12,16 @@ import { P } from "@/Component/text";
 import { NoteArea } from "@/Component/TextArea";
 import { color } from "@/theme/color";
 import { Button } from "expo-router/build/react-navigation";
+import { Link } from "expo-router";
 
 export default function Index() {
   const { top } = useSafeAreaInsets();
   return (
     <View style={[styles.container, { paddingTop: top + 16 }]}>
-      <View style={styles.formContainer}>
+      <ScrollView
+        showsVerticalScrollIndicator={true}
+      >
+        <View style={styles.formContainer}>
       <P style={[styles.questionText]}>How are you feeling today?</P>
 
       <ScrollView
@@ -36,7 +40,10 @@ export default function Index() {
       </View>
       <Pressable style={styles.button}>
         <P style={styles.buttonsave}>Save</P>
-      </Pressable>
+        </Pressable>
+        
+        <Link href="/about">Go to about</Link>
+      </ScrollView>
   
       
     </View>

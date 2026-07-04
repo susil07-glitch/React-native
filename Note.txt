@@ -8,3 +8,6 @@ SafeAreaProvider-> it provide safe area for the content like ( all content show 
 in mobile there is not automatic scroll
 
 ...rest -> destructuring garre remaining print garnu 
+
+
+
