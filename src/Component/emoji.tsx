@@ -1,19 +1,25 @@
 
 import { color } from "@/theme/color";
 import { P } from "./text";
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import { Image, ImageSourcePropType, Pressable, StyleSheet, View } from "react-native";
+import { Component, ComponentProps } from "react";
 
 type Props = {
-  text: string;
+  text: String;
   source: ImageSourcePropType;
-};
+  isSelected: boolean;
+} &ComponentProps<typeof Pressable>;
 
-export function Emoji({ text, source }: Props) {
+export function Emoji({ text, source ,isSelected,...rest}: Props) {
   return (
-    <View style={styles.emojiContainerSingle}>
+    <Pressable
+      style={[styles.emojiContainerSingle, {
+      borderColor:isSelected ?color.primary:color.border,
+    }]}
+    >
       <Image style={styles.image} source={source} />
       <P style={styles.emojiText}>{text}</P>
-    </View>
+    </Pressable>
   );
 }
 

@@ -1,19 +1,17 @@
 import {
   View,
   StyleSheet,
-  TextInput,
   ScrollView,
   Pressable,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Emoji } from "@/Component/emoji";
-import { emojies } from "@/Constant/Emojies";
 import { P } from "@/Component/text";
 import { NoteArea } from "@/Component/TextArea";
-import { color } from "@/theme/color";
-import { Button } from "expo-router/build/react-navigation";
 import { Link } from "expo-router";
-import {Heart} from "lucide-react-native"
+import { Heart } from "lucide-react-native"
+import { emojies } from "@/Constant/Emojies";
+
 
 export default function Index() {
   const { top } = useSafeAreaInsets();
@@ -29,8 +27,8 @@ export default function Index() {
           horizontal={true}
           contentContainerStyle={styles.emoji}
       >
-        {emojies.map((emoji) => (
-          <Emoji text={emoji.name} key={emoji.name} source={emoji.image} />
+        {Emoji.map((emojies) => (
+          <Emoji isSelected={emojies.id} text={emojies.name} key={emojies.name} source={emojies.image} />
         ))}
         </ScrollView>
         </View>
@@ -80,7 +78,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius:10
+    borderRadius: 10,
+    display: "flex",
+    flexDirection: "row",
+    gap:10
     
     
   },
